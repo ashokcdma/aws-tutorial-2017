@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse.ant.import?>
+<project basedir="." default="build" name="sqsSnsJavaLabMore">
+	<target name="allclean" depends="clean">
+		<delete dir="junit" />
+	</target>
+	<target name="publish" depends="build, SNSPublisher" />
+	<target name="consume" depends="build, SQSConsumer" />
+	<target name="test" depends="build">
+		<mkdir dir="${junit.output.dir}" />
+		<junit fork="yes" showoutput="true" printsummary="withOutAndErr">
+			<formatter type="xml" />
+			<test name="SqsSnsTest" todir="${junit.output.dir}" />
+			<classpath refid="sqsSnsJavaLab.classpath" />
+		</junit>
+	</target>
+
+
+</project>
